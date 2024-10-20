@@ -58,7 +58,7 @@ func run(outname string) int {
 		fmt.Println("outfile already exists")
 		return 1
 	}
-	if err := api.MergeCreateFile(paths, p, true, nil); err != nil {
+	if err := api.MergeCreateFile(paths, p, false, nil); err != nil {
 		fmt.Println(err)
 		return 1
 	}
