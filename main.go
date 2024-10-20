@@ -39,7 +39,7 @@ func checkExt(paths []string) bool {
 func run(outname string) int {
 	if !checkPiped() {
 		fmt.Println("no stdin pipe")
-		return 0
+		return 1
 	}
 	paths, err := fromPipe()
 	if err != nil {
@@ -56,7 +56,7 @@ func run(outname string) int {
 	p := filepath.Join(filepath.Dir(paths[0]), outname)
 	if fi, err := os.Stat(p); err == nil && !fi.IsDir() {
 		fmt.Println("outfile already exists")
-		return 0
+		return 1
 	}
 	if err := api.MergeCreateFile(paths, p, true, nil); err != nil {
 		fmt.Println(err)
