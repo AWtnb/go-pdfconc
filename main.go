@@ -38,16 +38,16 @@ func checkExt(paths []string) bool {
 
 func run(outname string) int {
 	if !checkPiped() {
-		fmt.Println("no stdin pipe")
+		fmt.Print("no stdin pipe")
 		return 1
 	}
 	paths, err := fromPipe()
 	if err != nil {
-		fmt.Println(err)
+		fmt.Print(err)
 		return 1
 	}
 	if !checkExt(paths) {
-		fmt.Println("non-pdf file passed")
+		fmt.Print("non-pdf file passed")
 		return 1
 	}
 	if !strings.HasPrefix(outname, EXT) {
@@ -55,11 +55,11 @@ func run(outname string) int {
 	}
 	p := filepath.Join(filepath.Dir(paths[0]), outname)
 	if fi, err := os.Stat(p); err == nil && !fi.IsDir() {
-		fmt.Println("outfile already exists")
+		fmt.Print("outfile already exists")
 		return 1
 	}
 	if err := api.MergeCreateFile(paths, p, false, nil); err != nil {
-		fmt.Println(err)
+		fmt.Print(err)
 		return 1
 	}
 	return 0
