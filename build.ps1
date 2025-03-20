@@ -6,7 +6,7 @@ else {
     go build -o $d
 
     if ($LASTEXITCODE -eq 0) {
-        "[FINISHED] Executable is built on {0}" -f $d | Write-Host -ForegroundColor Blue
+        "[FINISHED] Executable was built on {0}" -f $d | Write-Host -ForegroundColor Blue
     }
     else {
         "Failed to build. Nothing was copied." | Write-Host -ForegroundColor Magenta
